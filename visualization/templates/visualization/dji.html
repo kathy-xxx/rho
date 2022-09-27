@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+{% extends 'visualization/base.html' %}
+{% load static %}
+
+{% block head %}
+  <meta charset="utf-8">
+  <title>dji</title>
+  <!-- 引入 echarts.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+  <script src="{% static '/visualization/echarts.js' %}"></script>
+  <style>
+    #dji{  text-align:center; position: absolute;
+	top: 22%;
+	left: 10%;
+	right: 15%;
+	bottom: 5%;}
+    #left_nav_bar{  text-align:center; position: absolute;
+	top: 30%;
+	left: 0%;
+	right: 90%;
+	bottom: 80%;}
+  </style>
+{% endblock %}
+
+{% block content %}
+    <!-- Navbar (sit on left) -->
+    <div id="left_nav_bar">
+        <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+        <!-- Float links to the right. Hide them on small screens -->
+        <div class="w3-right w3-hide-small">
+            <a href="{% url 'dji_view' %}" class="w3-bar-item w3-button">DJI</a>
+            <br>
+            <a href="{% url 'home' %}" class="w3-bar-item w3-button">IXIC</a>
+            <br>
+            <a href="{% url 'home' %}" class="w3-bar-item w3-button">NDX</a>
+            <button class="w3-button w3-black w3-section" type="submit">
+                <i class="fa fa-paper-plane"></i> 
+                    <a href="{% url 'dji_view' %}">reload</a>
+              </button>
+        </div>
+        </div>
+    </div>
+
+
+    <div class="w3-container w3-padding-32" id="charts">
+        <h4 class="w3-border-bottom w3-border-light-grey w3-padding-16" style="text-align:center"><br>DJI</h4>
+
+        <div id="dji" ></div>
+
+        <script type="text/javascript">
+            // 基于准备好的dom，初始化echarts实例
+            var djiChart = echarts.init(document.getElementById('dji'));
+        
+            $.ajax({
+              type: "get",
+              url: `/dji/data/`,
+              dataType: "json",
+              success: function (data) {
+
+                // 指定图表的配置项和数据
+                var option = {
+                    color:["#E63946", "#A8DADC", "#457B9D", "#1D3557"],
+                    title: {
+                        left: 'center',
+                        text: 'dji',
+                        textStyle: {
+                            fontFamily: 'Trebuchet MS',
+                        },
+                        show: false,
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'cross'
+                        },
+                        extraCssText:'width:160px;height:280px;',
+                        position: function (point, params, dom, rect, size) {
+                            return ['95%', '9%'];
+                        },
+                        textStyle: {
+                            fontFamily: 'Trebuchet MS',
+                            fontSize: 12,
+                        },
+                        alwaysShowContent: true,
+                        renderMode:'html',
+                        appendToBody: true,
+                        formatter: (params) => {
+                                    return params[0].name + "<br>" +
+                                        params[0].marker + params[0].seriesName + ": " + params[0].data.toFixed(2) + "<br>" + 
+                                        params[1].marker + params[1].seriesName + ": " + params[1].data.toFixed(2) + "<br>" + 
+                                        params[2].marker + params[2].seriesName + ": " + params[2].data.toFixed(2) + "<br>" + 
+                                        params[3].marker + params[3].seriesName + ": " + params[3].data.toFixed(2) + "<br>" +
+                                        params[4].marker + params[4].seriesName + ": " + params[4].data.toFixed(2) + "<br>" +
+                                        params[5].marker + params[5].seriesName + ": " + params[5].data.toFixed(2) + "<br>" +
+                                        params[6].marker + params[6].seriesName + ": " + params[6].data.toFixed(2) + "<br>" +
+                                        params[7].marker + params[7].seriesName + ": " + params[7].data.toFixed(2) + "<br>" +
+                                        params[8].marker + params[8].seriesName + ": " + params[8].data.toFixed(2) + "<br>" +
+                                        params[9].marker + params[9].seriesName + ": " + params[9].data.toFixed(2) + "<br>" +
+                                        params[10].marker + params[10].seriesName + ": " + params[10].data.toFixed(0) + "<br>" +
+                                        params[11].marker + params[11].seriesName + ": " + params[11].data.toFixed(0) + "<br>"
+                            },
+                            order : "seriesAsc",
+                        axisPointer:'y',
+                    },
+                    legend: {
+                        data: ['close','clmov','bsadf_mi', 'rho_45','bsmov','rho_sigma','s_mov','rho_trend','rho_trend2'],
+                        left: '10%',
+                        textStyle: {
+                            fontFamily: 'Trebuchet MS',
+                            fontSize: 10,
+                        },
+                    },
+                    toolbox: {
+                        feature: {
+                        dataZoom: {
+                            yAxisIndex: 'none'
+                        },
+                        restore: {},
+                        saveAsImage: {}
+                        }
+                    },
+                    axisPointer: {
+                        link: [
+                        {
+                            xAxisIndex: 'all',
+                        }
+                        ]
+                    },
+                    dataZoom: [
+                        {
+                            show: true,
+                            realtime: true,
+                            start: 0,
+                            end: 100,
+                            xAxisIndex: [0, 1, 2, 3, 4]
+                        },
+                        {
+                            type: 'inside',
+                            realtime: true,
+                            start: 0,
+                            end: 100,
+                            xAxisIndex: [0, 1, 2, 3, 4]
+                        },
+                        {
+                            type: 'inside',
+                            realtime: true,
+                            start: 0,
+                            end: 100,
+                            xAxisIndex: [0, 1, 2, 3, 4]
+                        },
+                        {
+                            type: 'inside',
+                            realtime: true,
+                            start: 0,
+                            end: 100,
+                            xAxisIndex: [0, 1, 2, 3, 4]
+                        },
+                    ],
+                    grid: [
+                        {
+                            left: '15%',
+                            right: '10%',
+                            height: '10%'
+                        },
+                        {
+                            left: '15%',
+                            right: '10%',
+                            top: '25%',
+                            height: '10%'
+                        },
+                        {
+                            left: '15%',
+                            right: '10%',
+                            top: '40%',
+                            height: '10%'
+                        },
+                        {
+                            left: '15%',
+                            right: '10%',
+                            top: '55%',
+                            height: '10%'
+                        },
+                        {
+                            left: '15%',
+                            right: '10%',
+                            top: '70%',
+                            height: '10%'
+                        },
+                    ],
+                    xAxis: [
+                        {
+                            type: 'category',
+                            boundaryGap: false,
+                            axisLine: { onZero: true },
+                            data: data.time.map(function (str) {
+                                return str.replace('T', ' ');
+                            }).map(function (str) {
+                                return str.replace('Z', ' ');
+                            }),
+                            show: false,
+                            axisPointer: {
+                                show: true,
+                            }
+                        },
+                        {
+                            gridIndex: 1,
+                            type: 'category',
+                            boundaryGap: false,
+                            axisLine: { onZero: true },
+                            data: data.time.map(function (str) {
+                                return str.replace('T', ' ');
+                            }).map(function (str) {
+                                return str.replace('Z', ' ');
+                            }),
+                            position: 'bottom',
+                            show: false,
+                            textStyle: {
+                                fontFamily: 'Trebuchet MS',
+                            },
+                            axisPointer: {
+                                show: true,
+                            }
+                        },
+                        {
+                            gridIndex: 2,
+                            type: 'category',
+                            boundaryGap: false,
+                            axisLine: { onZero: true },
+                            data: data.time.map(function (str) {
+                                return str.replace('T', ' ');
+                            }).map(function (str) {
+                                return str.replace('Z', ' ');
+                            }),
+                            position: 'bottom',
+                            show: false,
+                            textStyle: {
+                                fontFamily: 'Trebuchet MS',
+                            },
+                            axisPointer: {
+                                show: true,
+                            },
+                        },
+                        {
+                            gridIndex: 3,
+                            type: 'category',
+                            boundaryGap: false,
+                            axisLine: { onZero: true },
+                            data: data.time.map(function (str) {
+                                return str.replace('T', ' ');
+                            }).map(function (str) {
+                                return str.replace('Z', ' ');
+                            }),
+                            position: 'bottom',
+                            show: false,
+                            textStyle: {
+                                fontFamily: 'Trebuchet MS',
+                            },
+                            axisPointer: {
+                                show: true,
+                            },
+                        },
+                        {
+                            gridIndex: 4,
+                            type: 'category',
+                            boundaryGap: false,
+                            axisLine: { onZero: true },
+                            data: data.time.map(function (str) {
+                                return str.replace('T', ' ');
+                            }).map(function (str) {
+                                return str.replace('Z', ' ');
+                            }),
+                            position: 'bottom',
+                            show: true,
+                            axisLabel: {
+                                fontSize:10,
+                                fontFamily: 'Trebuchet MS',
+                            },
+                            axisPointer: {
+                                show: true,
+                            },
+                        }
+                    ],
+                    yAxis:  [
+                        {
+                            name: 'close\nclmov',
+                            nameLocation:'middle',
+                            nameGap:42,
+                            nameRotate:0,
+                            type: 'value',
+                            scale: true,
+                            nameTextStyle: {
+                                fontSize:10,
+                            },
+                            axisPointer: {
+                                show: true,
+                            },
+                            axisLabel: {
+                                fontSize:10,
+                            }
+                        },
+                        {
+                            gridIndex: 1,
+                            name: 'bsadf_mi\nrho_45\nbsmov',
+                            nameLocation:'middle',
+                            nameGap:42,
+                            nameRotate:0,
+                            type: 'value',
+                            scale: true,
+                            nameTextStyle: {
+                                fontSize:10,
+                            },
+                            axisPointer: {
+                                show: true,
+                            },
+                            axisLabel: {
+                                fontSize:10,
+                            },
+                            max: 2.75,
+                            min: -2,
+                        },
+                        {
+                            gridIndex: 2,
+                            name: 'rho_sigma\ns_mov',
+                            nameLocation:'middle',
+                            nameGap:42,
+                            nameRotate:0,
+                            type: 'value',
+                            scale: true,
+                            nameTextStyle: {
+                                fontSize:10,
+                            },
+                            axisPointer: {
+                                show: true,
+                            },
+                            axisLabel: {
+                                fontSize:10,
+                            },
+
+                        },
+                        {
+                            gridIndex: 3,
+                            name: 'rho_trend\nrho_trend2',
+                            nameLocation:'middle',
+                            nameGap:42,
+                            nameRotate:0,
+                            type: 'value',
+                            scale: true,
+                            nameTextStyle: {
+                                fontSize:10,
+                            },
+                            axisPointer: {
+                                show: true,
+                            },
+                            axisLabel: {
+                                fontSize:10,
+                            },
+
+                        },
+                        {
+                            gridIndex: 4,
+                            name: 'month\nday',
+                            nameLocation:'middle',
+                            nameGap:42,
+                            nameRotate:0,
+                            type: 'value',
+                            scale: true,
+                            nameTextStyle: {
+                                fontSize:10,
+                            },
+                            axisPointer: {
+                                show: true,
+                            },
+                            axisLabel: {
+                                fontSize:10,
+                            },
+
+                        },
+                    ],
+                    series: [
+                        {
+                            symbol: "none",
+                            name: 'close',
+                            type: 'line',
+                            data: data.close,
+                            lineStyle:{
+                                    width:1//设置线条粗细
+                                }
+                        },
+                        {
+                            symbol: "none",
+                            name: 'clmov',
+                            type: 'line',
+                            data: data.clmov,
+                            lineStyle:{
+                                    width:1//设置线条粗细
+                                }
+                        },
+                        {
+                            symbol: "none",
+                            name: 'rho_45',
+                            type: 'line',
+                            xAxisIndex: 1,
+                            yAxisIndex: 1,
+                            symbolSize: 8,
+                            // prettier-ignore
+                            data: data.rho_45,
+                            lineStyle:{
+                                    width:1//设置线条粗细
+                                }
+                        },
+                        {
+                            symbol: "none",
+                            name: 'bsadf_mi',
+                            type: 'line',
+                            xAxisIndex: 1,
+                            yAxisIndex: 1,
+                            symbolSize: 8,
+                            // prettier-ignore
+                            data: data.bsadf_mi,
+                            lineStyle:{
+                                    width:1//设置线条粗细
+                                }
+                        },
+                        {
+                            symbol: "none",
+                            name: 'bsmov',
+                            type: 'line',
+                            xAxisIndex: 1,
+                            yAxisIndex: 1,
+                            symbolSize: 8,
+                            // prettier-ignore
+                            data: data.bsmov,
+                            lineStyle:{
+                                    width:1//设置线条粗细
+                                }
+                        },
+                        {
+                            symbol: "none",
+                            name: 'rho_sigma',
+                            type: 'line',
+                            xAxisIndex: 2,
+                            yAxisIndex: 2,
+                            symbolSize: 8,
+                            // prettier-ignore
+                            data: data.rho_sigma,
+                            lineStyle:{
+                                    width:1//设置线条粗细
+                                }
+                        },
+                        {
+                            symbol: "none",
+                            name: 's_mov',
+                            type: 'line',
+                            xAxisIndex: 2,
+                            yAxisIndex: 2,
+                            symbolSize: 8,
+                            // prettier-ignore
+                            data: data.s_mov,
+                            lineStyle:{
+                                    width:1//设置线条粗细
+                                }
+                        },
+                        {
+                            symbol: "none",
+                            name: 'rho_trend',
+                            type: 'line',
+                            xAxisIndex: 3,
+                            yAxisIndex: 3,
+                            symbolSize: 8,
+                            // prettier-ignore
+                            data: data.rho_trend,
+                            lineStyle:{
+                                    width:1//设置线条粗细
+                                }
+                        },
+                        {
+                            symbol: "none",
+                            name: 'rho_trend2',
+                            type: 'line',
+                            xAxisIndex: 3,
+                            yAxisIndex: 3,
+                            symbolSize: 8,
+                            // prettier-ignore
+                            data: data.rho_trend2,
+                            lineStyle:{
+                                    width:1//设置线条粗细
+                                }
+                        },
+                        {
+                            symbol: "none",
+                            name: 'month',
+                            type: 'line',
+                            xAxisIndex: 4,
+                            yAxisIndex: 4,
+                            symbolSize: 8,
+                            // prettier-ignore
+                            data: data.month,
+                            lineStyle:{
+                                    width:1//设置线条粗细
+                                }
+                        },
+                        {
+                            symbol: "none",
+                            name: 'day',
+                            type: 'line',
+                            xAxisIndex: 4,
+                            yAxisIndex: 4,
+                            symbolSize: 8,
+                            // prettier-ignore
+                            data: data.day,
+                            lineStyle:{
+                                    width:1//设置线条粗细
+                                },
+                        },
+                    ],
+                    
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                djiChart.setOption(option);
+              },
+              error: function () {
+                alert('Error: ajax 请求出错！')
+              }
+            });
+        </script>
+    </div>
+
+{% endblock %}
