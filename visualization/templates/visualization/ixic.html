@@ -4,7 +4,7 @@
 
 {% block head %}
   <meta charset="utf-8">
-  <title>dji</title>
+  <title>ixic</title>
   <!-- 引入 echarts.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
@@ -36,7 +36,7 @@
             <a href="{% url 'ndx_view' %}" class="w3-bar-item w3-button">NDX</a>
             <button class="w3-button w3-black w3-section" type="submit">
                 <i class="fa fa-paper-plane"></i> 
-                    <a href="{% url 'dji_view' %}">reload</a>
+                    <a href="{% url 'ixic_view' %}">reload</a>
               </button>
         </div>
         </div>
@@ -44,7 +44,7 @@
 
 
     <div class="w3-container w3-padding-32" id="charts">
-        <h4 class="w3-border-bottom w3-border-light-grey w3-padding-16" style="text-align:center"><br>DJI</h4>
+        <h4 class="w3-border-bottom w3-border-light-grey w3-padding-16" style="text-align:center"><br>IXIC</h4>
 
         <div id="dji" ></div>
 
@@ -54,7 +54,7 @@
         
             $.ajax({
               type: "get",
-              url: `/dji/data/`,
+              url: `/ixic/data/`,
               dataType: "json",
               success: function (data) {
 
