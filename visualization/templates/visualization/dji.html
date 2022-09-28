@@ -35,7 +35,7 @@
     /*Add an overlay to the entire page blocking any further presses to buttons or other elements.*/
     .overlay {
         position: fixed;
-        top: 46.8%;
+        top: 44.8%;
         left: 46.8%;
         width: 80%;
         height: 80%;
@@ -75,7 +75,9 @@
 {% endblock %}
 
 {% block content %}
-    <div id="loader" class="lds-dual-ring hidden overlay"></div>
+    <div id="loader" class="lds-dual-ring hidden overlay">
+        <p>Loading...</p>
+    </div>
 
 
 
