@@ -38,6 +38,10 @@ def get_dji_data(request):
     dji_day = DjiChart.objects.values_list('day',flat=True)
     dji_bsadf_mi = DjiChart.objects.values_list('bsadf_mi',flat=True)
     dji_rho_45 = DjiChart.objects.values_list('rho_45',flat=True)
+    dji_day_points = DjiChart.objects.values_list('day_points', flat=True)
+    dji_mid_points = DjiChart.objects.values_list('mid_points', flat=True)
+    dji_down1 = DjiChart.objects.values_list('down1', flat=True)
+    dji_up1 = DjiChart.objects.values_list('up1', flat=True)
     jsondata = {
         "time": list(dji_time),
         "close": list(dji_close),
@@ -51,6 +55,10 @@ def get_dji_data(request):
         'day': list(dji_day),
         "bsadf_mi": list(dji_bsadf_mi),
         "rho_45": list(dji_rho_45),
+        "day_points": list(dji_day_points),
+        "mid_points": list(dji_mid_points),
+        "down1": list(dji_down1),
+        "up1": list(dji_up1),
     }
     return JsonResponse(jsondata)
 
@@ -68,6 +76,10 @@ def get_ixic_data(request):
     ixic_day = IxicChart.objects.values_list('day',flat=True)
     ixic_bsadf_mi = IxicChart.objects.values_list('bsadf_mi',flat=True)
     ixic_rho_45 = IxicChart.objects.values_list('rho_45',flat=True)
+    ixic_day_points = IxicChart.objects.values_list('day_points', flat=True)
+    ixic_mid_points = IxicChart.objects.values_list('mid_points', flat=True)
+    ixic_down1 = IxicChart.objects.values_list('down1', flat=True)
+    ixic_up1 = IxicChart.objects.values_list('up1', flat=True)
     jsondata = {
         "time": list(ixic_time),
         "close": list(ixic_close),
@@ -81,6 +93,10 @@ def get_ixic_data(request):
         'day': list(ixic_day),
         "bsadf_mi": list(ixic_bsadf_mi),
         "rho_45": list(ixic_rho_45),
+        "day_points": list(ixic_day_points),
+        "mid_points": list(ixic_mid_points),
+        "down1": list(ixic_down1),
+        "up1": list(ixic_up1),
     }
     return JsonResponse(jsondata)
 
@@ -98,6 +114,10 @@ def get_ndx_data(request):
     ndx_day = NdxChart.objects.values_list('day',flat=True)
     ndx_bsadf_mi = NdxChart.objects.values_list('bsadf_mi',flat=True)
     ndx_rho_45 = NdxChart.objects.values_list('rho_45',flat=True)
+    ndx_day_points = NdxChart.objects.values_list('day_points', flat=True)
+    ndx_mid_points = NdxChart.objects.values_list('mid_points', flat=True)
+    ndx_down1 = NdxChart.objects.values_list('down1', flat=True)
+    ndx_up1 = NdxChart.objects.values_list('up1', flat=True)
     jsondata = {
         "time": list(ndx_time),
         "close": list(ndx_close),
@@ -111,6 +131,10 @@ def get_ndx_data(request):
         'day': list(ndx_day),
         "bsadf_mi": list(ndx_bsadf_mi),
         "rho_45": list(ndx_rho_45),
+        "day_points": list(ndx_day_points),
+        "mid_points": list(ndx_mid_points),
+        "down1": list(ndx_down1),
+        "up1": list(ndx_up1),
     }
     return JsonResponse(jsondata)
 
