@@ -538,6 +538,7 @@
 
                 // 使用刚指定的配置项和数据显示图表。
                 djiChart.setOption(option);
+                window.onresize = djiChart.resize
               },
               complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
                 $('#loader').addClass('hidden')
