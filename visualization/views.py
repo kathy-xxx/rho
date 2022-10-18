@@ -105,22 +105,22 @@ def get_ixic_data(request):
 
 #返回ndx
 def get_ndx_data(request):
-    ndx_time = NdxFutureChart.objects.values_list('time',flat=True)
-    ndx_close = NdxFutureChart.objects.values_list('close',flat=True)
-    ndx_clmov = NdxFutureChart.objects.values_list('clmov',flat=True)
-    ndx_bsmov = NdxFutureChart.objects.values_list('bsmov',flat=True)
-    ndx_rho_sigma = NdxFutureChart.objects.values_list('rho_sigma',flat=True)
-    ndx_s_mov = NdxFutureChart.objects.values_list('s_mov',flat=True)
-    ndx_rho_trend = NdxFutureChart.objects.values_list('rho_trend',flat=True)
-    ndx_rho_trend2 = NdxFutureChart.objects.values_list('rho_trend2',flat=True)
-    ndx_month = NdxFutureChart.objects.values_list('month',flat=True)
-    ndx_day = NdxFutureChart.objects.values_list('day',flat=True)
-    ndx_bsadf_mi = NdxFutureChart.objects.values_list('bsadf_mi',flat=True)
-    ndx_rho_45 = NdxFutureChart.objects.values_list('rho_45',flat=True)
-    ndx_day_points = NdxFutureChart.objects.values_list('day_points', flat=True)
-    ndx_mid_points = NdxFutureChart.objects.values_list('mid_points', flat=True)
-    ndx_down1 = NdxFutureChart.objects.values_list('down1', flat=True)
-    ndx_up1 = NdxFutureChart.objects.values_list('up1', flat=True)
+    ndx_time = NdxChart.objects.values_list('time',flat=True)
+    ndx_close = NdxChart.objects.values_list('close',flat=True)
+    ndx_clmov = NdxChart.objects.values_list('clmov',flat=True)
+    ndx_bsmov = NdxChart.objects.values_list('bsmov',flat=True)
+    ndx_rho_sigma = NdxChart.objects.values_list('rho_sigma',flat=True)
+    ndx_s_mov = NdxChart.objects.values_list('s_mov',flat=True)
+    ndx_rho_trend = NdxChart.objects.values_list('rho_trend',flat=True)
+    ndx_rho_trend2 = NdxChart.objects.values_list('rho_trend2',flat=True)
+    ndx_month = NdxChart.objects.values_list('month',flat=True)
+    ndx_day = NdxChart.objects.values_list('day',flat=True)
+    ndx_bsadf_mi = NdxChart.objects.values_list('bsadf_mi',flat=True)
+    ndx_rho_45 = NdxChart.objects.values_list('rho_45',flat=True)
+    ndx_day_points = NdxChart.objects.values_list('day_points', flat=True)
+    ndx_mid_points = NdxChart.objects.values_list('mid_points', flat=True)
+    ndx_down1 = NdxChart.objects.values_list('down1', flat=True)
+    ndx_up1 = NdxChart.objects.values_list('up1', flat=True)
     jsondata = {
         "time": list(ndx_time),
         "close": list(ndx_close),
