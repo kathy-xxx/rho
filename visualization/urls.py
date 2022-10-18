@@ -19,6 +19,9 @@ urlpatterns = [
 
     path('ndx', views.ndx_view, name="ndx_view"),
     path('ndx/data/', views.get_ndx_data, name='ndx_data'),
+
+    path('ndx-future', views.ndx_future_view, name="ndx_future_view"),
+    path('ndx-future/data/', views.get_ndx_future_data, name='ndx_future_data'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

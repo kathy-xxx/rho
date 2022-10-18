@@ -4,7 +4,7 @@
 
 {% block head %}
   <meta charset="utf-8">
-  <title>dji</title>
+  <title>ndx-future</title>
   <!-- 引入 echarts.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
@@ -14,7 +14,7 @@
   <script src="{% static '/visualization/style.css' %}"></script>
 
   <style>
-    #dji{  text-align:center; position: absolute;
+    #ndx{  text-align:center; position: absolute;
 	top: 22%;
 	left: 11%;
 	right: 17%;
@@ -87,16 +87,16 @@
         <!-- Float links to the right. Hide them on small screens -->
         <div class="w3-right">
             <br>
-            <a href="{% url 'ndx_future_view' %}" class="w3-bar-item w3-button">NDX<br>FUTURE</a>
+            <a href="{% url 'ndx_future_view' %}" class="w3-bar-item w3-button w3-light-grey">NDX<br>FUTURE</a>
             <br>
-            <a href="{% url 'dji_view' %}" class="w3-bar-item w3-button w3-light-grey">DJI</a>
+            <a href="{% url 'dji_view' %}" class="w3-bar-item w3-button">DJI</a>
             <br>
             <a href="{% url 'ixic_view' %}" class="w3-bar-item w3-button">IXIC</a>
             <br>
-            <a href="{% url 'ndx_view' %}" class="w3-bar-item w3-button">NDX</a>
+            <a href="{% url 'ixic_view' %}" class="w3-bar-item w3-button">NDX</a>
             <button class="w3-button w3-black w3-section" type="submit">
                 <i class="fa fa-paper-plane"></i> 
-                    <a href="{% url 'dji_view' %}">reload</a>
+                    <a href="{% url 'ndx_future_view' %}">reload</a>
               </button>
         </div>
         </div>
@@ -106,17 +106,17 @@
     <div class="w3-container w3-padding-32" id="charts">
         <div id="loader" class="lds-dual-ring hidden overlay"></div>
         
-        <h4 class="w3-border-bottom w3-border-light-grey w3-padding-16" style="text-align:center"><br>DJI</h4>
+        <h4 class="w3-border-bottom w3-border-light-grey w3-padding-16" style="text-align:center"><br>NDX FUTURE</h4>
 
-        <div id="dji" ></div>
+        <div id="ndx" ></div>
 
         <script type="text/javascript">
             // 基于准备好的dom，初始化echarts实例
-            var djiChart = echarts.init(document.getElementById('dji'));
+            var djiChart = echarts.init(document.getElementById('ndx'));
         
             $.ajax({
               type: "get",
-              url: `/dji/data/`,
+              url: `/ndx-future/data/`,
               dataType: "json",
               beforeSend: function () { // Before we send the request, remove the .hidden class from the spinner and default to inline-block.
                     $('#loader').removeClass('hidden')
@@ -128,7 +128,7 @@
                     color:["#E63946", "#A8DADC", "#457B9D", "#1D3557"],
                     title: {
                         left: 'center',
-                        text: 'dji',
+                        text: 'ndx future',
                         textStyle: {
                             fontFamily: 'Trebuchet MS',
                         },
@@ -259,6 +259,9 @@
                             axisPointer: {
                                 show: true,
                             },
+                            axisLine: {
+                                show: true,
+                            },
                         },
                         {
                             gridIndex: 1,
@@ -277,7 +280,10 @@
                             },
                             axisPointer: {
                                 show: true,
-                            }
+                            },
+                            axisLine: {
+                                show: true,
+                            },
                         },
                         {
                             gridIndex: 2,
@@ -295,6 +301,9 @@
                                 fontFamily: 'Trebuchet MS',
                             },
                             axisPointer: {
+                                show: true,
+                            },
+                            axisLine: {
                                 show: true,
                             },
                         },
@@ -316,6 +325,9 @@
                             axisPointer: {
                                 show: true,
                             },
+                            axisLine: {
+                                show: true,
+                            },
                         },
                     ],
                     yAxis:  [
@@ -334,10 +346,7 @@
                             },
                             axisLabel: {
                                 fontSize:10,
-                            },
-                            axisLine: {
-                                show: true,
-                            },
+                            }
                         },
                         {
                             gridIndex: 1,
@@ -355,9 +364,6 @@
                             },
                             axisLabel: {
                                 fontSize:10,
-                            },
-                            axisLine: {
-                                show: true,
                             },
                             max: 2.75,
                             min: -2,
@@ -379,9 +385,6 @@
                             axisLabel: {
                                 fontSize:10,
                             },
-                            axisLine: {
-                                show: true,
-                            },
 
                         },
                         {
@@ -400,9 +403,6 @@
                             },
                             axisLabel: {
                                 fontSize:10,
-                            },
-                            axisLine: {
-                                show: true,
                             },
                         },
                     ],
