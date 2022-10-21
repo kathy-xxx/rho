@@ -77,6 +77,22 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
+class Csi300(models.Model):
+    time = models.DateTimeField(blank=True, null=True)
+    open = models.FloatField(blank=True, null=True)
+    close = models.FloatField(blank=True, null=True)
+    high = models.FloatField(blank=True, null=True)
+    low = models.FloatField(blank=True, null=True)
+    volume = models.FloatField(blank=True, null=True)
+    trade = models.FloatField(blank=True, null=True)
+    price = models.FloatField(blank=True, null=True)
+    id = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'csi_300'
+
+
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
     object_id = models.TextField(blank=True, null=True)
@@ -279,6 +295,38 @@ class NdxFuture(models.Model):
         db_table = 'ndx_future'
 
 
+class NdxFuture2(models.Model):
+    time = models.DateTimeField(db_column='Time', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(blank=True, null=True)
+    bsadf_45_1 = models.FloatField(blank=True, null=True)
+    bsadf_45_2 = models.FloatField(blank=True, null=True)
+    bsadf_45_3 = models.FloatField(blank=True, null=True)
+    bsadf_45_4 = models.FloatField(blank=True, null=True)
+    bsadf_45_5 = models.FloatField(blank=True, null=True)
+    rho_45 = models.FloatField(blank=True, null=True)
+    bsadf_mi = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'ndx_future2'
+
+
+class NdxFuture3(models.Model):
+    time = models.DateTimeField(db_column='Time', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(blank=True, null=True)
+    bsadf_45_1 = models.FloatField(blank=True, null=True)
+    bsadf_45_2 = models.FloatField(blank=True, null=True)
+    bsadf_45_3 = models.FloatField(blank=True, null=True)
+    bsadf_45_4 = models.FloatField(blank=True, null=True)
+    bsadf_45_5 = models.FloatField(blank=True, null=True)
+    rho_45 = models.FloatField(blank=True, null=True)
+    bsadf_mi = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'ndx_future3'
+
+
 class NdxFutureChart(models.Model):
     time = models.DateTimeField(db_column='Time', blank=True, null=True)  # Field name made lowercase.
     close = models.FloatField(blank=True, null=True)
@@ -308,3 +356,65 @@ class NdxFutureChart(models.Model):
     class Meta:
         managed = False
         db_table = 'ndx_future_chart'
+
+
+class NdxFutureChart2(models.Model):
+    time = models.DateTimeField(db_column='Time', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(blank=True, null=True)
+    bsadf_45_1 = models.FloatField(blank=True, null=True)
+    bsadf_45_2 = models.FloatField(blank=True, null=True)
+    bsadf_45_3 = models.FloatField(blank=True, null=True)
+    bsadf_45_4 = models.FloatField(blank=True, null=True)
+    bsadf_45_5 = models.FloatField(blank=True, null=True)
+    rho_45 = models.FloatField(blank=True, null=True)
+    bsadf_mi = models.FloatField(blank=True, null=True)
+    day_points = models.FloatField(blank=True, null=True)
+    hour = models.FloatField(blank=True, null=True)
+    day = models.IntegerField(blank=True, null=True)
+    month = models.IntegerField(blank=True, null=True)
+    mid_points = models.FloatField(blank=True, null=True)
+    clmov = models.FloatField(blank=True, null=True)
+    clmov_s = models.FloatField(blank=True, null=True)
+    rho_sigma = models.FloatField(blank=True, null=True)
+    s_mov = models.FloatField(blank=True, null=True)
+    rho_trend = models.FloatField(blank=True, null=True)
+    rho_trend2 = models.FloatField(blank=True, null=True)
+    t_mov = models.FloatField(blank=True, null=True)
+    bsmov = models.FloatField(blank=True, null=True)
+    down1 = models.FloatField(blank=True, null=True)
+    up1 = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'ndx_future_chart2'
+
+
+class NdxFutureChart3(models.Model):
+    time = models.DateTimeField(db_column='Time', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(blank=True, null=True)
+    bsadf_45_1 = models.FloatField(blank=True, null=True)
+    bsadf_45_2 = models.FloatField(blank=True, null=True)
+    bsadf_45_3 = models.FloatField(blank=True, null=True)
+    bsadf_45_4 = models.FloatField(blank=True, null=True)
+    bsadf_45_5 = models.FloatField(blank=True, null=True)
+    rho_45 = models.FloatField(blank=True, null=True)
+    bsadf_mi = models.FloatField(blank=True, null=True)
+    day_points = models.FloatField(blank=True, null=True)
+    hour = models.FloatField(blank=True, null=True)
+    day = models.IntegerField(blank=True, null=True)
+    month = models.IntegerField(blank=True, null=True)
+    mid_points = models.FloatField(blank=True, null=True)
+    clmov = models.FloatField(blank=True, null=True)
+    clmov_s = models.FloatField(blank=True, null=True)
+    rho_sigma = models.FloatField(blank=True, null=True)
+    s_mov = models.FloatField(blank=True, null=True)
+    rho_trend = models.FloatField(blank=True, null=True)
+    rho_trend2 = models.FloatField(blank=True, null=True)
+    t_mov = models.FloatField(blank=True, null=True)
+    bsmov = models.FloatField(blank=True, null=True)
+    down1 = models.FloatField(blank=True, null=True)
+    up1 = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'ndx_future_chart3'
