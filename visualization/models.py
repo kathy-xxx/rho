@@ -77,20 +77,6 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
-class Csi300(models.Model):
-    time = models.DateTimeField(blank=True, null=True)
-    open = models.FloatField(blank=True, null=True)
-    close = models.FloatField(blank=True, null=True)
-    high = models.FloatField(blank=True, null=True)
-    low = models.FloatField(blank=True, null=True)
-    volume = models.FloatField(blank=True, null=True)
-    trade = models.FloatField(blank=True, null=True)
-    price = models.FloatField(blank=True, null=True)
-    id = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'csi_300'
 
 
 class DjangoAdminLog(models.Model):
