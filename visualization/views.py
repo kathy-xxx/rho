@@ -143,22 +143,22 @@ def get_ndx_data(request):
 
 #返回ndx-future
 def get_ndx_future_data(request):
-    ndx_future_time = NdxFutureChart3.objects.values_list('time',flat=True)
-    ndx_future_close = NdxFutureChart3.objects.values_list('close',flat=True)
-    ndx_future_clmov = NdxFutureChart3.objects.values_list('clmov',flat=True)
-    ndx_future_bsmov = NdxFutureChart3.objects.values_list('bsmov',flat=True)
-    ndx_future_rho_sigma = NdxFutureChart3.objects.values_list('rho_sigma',flat=True)
-    ndx_future_s_mov = NdxFutureChart3.objects.values_list('s_mov',flat=True)
-    ndx_future_rho_trend = NdxFutureChart3.objects.values_list('rho_trend',flat=True)
-    ndx_future_rho_trend2 = NdxFutureChart3.objects.values_list('rho_trend2',flat=True)
-    ndx_future_month = NdxFutureChart3.objects.values_list('month',flat=True)
-    ndx_future_day = NdxFutureChart3.objects.values_list('day',flat=True)
-    ndx_future_bsadf_mi = NdxFutureChart3.objects.values_list('bsadf_mi',flat=True)
-    ndx_future_rho_45 = NdxFutureChart3.objects.values_list('rho_45',flat=True)
-    ndx_future_day_points = NdxFutureChart3.objects.values_list('day_points', flat=True)
-    ndx_future_mid_points = NdxFutureChart3.objects.values_list('mid_points', flat=True)
-    ndx_future_down1 = NdxFutureChart3.objects.values_list('down1', flat=True)
-    ndx_future_up1 = NdxFutureChart3.objects.values_list('up1', flat=True)
+    ndx_future_time = NdxFutureChart.objects.values_list('time',flat=True)
+    ndx_future_close = NdxFutureChart.objects.values_list('close',flat=True)
+    ndx_future_clmov = NdxFutureChart.objects.values_list('clmov',flat=True)
+    ndx_future_bsmov = NdxFutureChart.objects.values_list('bsmov',flat=True)
+    ndx_future_rho_sigma = NdxFutureChart.objects.values_list('rho_sigma',flat=True)
+    ndx_future_s_mov = NdxFutureChart.objects.values_list('s_mov',flat=True)
+    ndx_future_rho_trend = NdxFutureChart.objects.values_list('rho_trend',flat=True)
+    ndx_future_rho_trend2 = NdxFutureChart.objects.values_list('rho_trend2',flat=True)
+    ndx_future_month = NdxFutureChart.objects.values_list('month',flat=True)
+    ndx_future_day = NdxFutureChart.objects.values_list('day',flat=True)
+    ndx_future_bsadf_mi = NdxFutureChart.objects.values_list('bsadf_mi',flat=True)
+    ndx_future_rho_45 = NdxFutureChart.objects.values_list('rho_45',flat=True)
+    ndx_future_day_points = NdxFutureChart.objects.values_list('day_points', flat=True)
+    ndx_future_mid_points = NdxFutureChart.objects.values_list('mid_points', flat=True)
+    ndx_future_down1 = NdxFutureChart.objects.values_list('down1', flat=True)
+    ndx_future_up1 = NdxFutureChart.objects.values_list('up1', flat=True)
     jsondata = {
         "time": list(ndx_future_time),
         "close": list(ndx_future_close),
